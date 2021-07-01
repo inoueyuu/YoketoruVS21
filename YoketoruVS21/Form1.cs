@@ -14,6 +14,26 @@ namespace YoketoruVS21
     public partial class Form1 : Form
     {
         const bool isDebug = true;
+
+        const int PlayerMax = 1;
+        const int EnemyMaex = 3;
+        const int ItemMax = 3;
+        const int ChrMax = PlayerMax + EnemyMaex + ItemMax;
+
+        Label[] chrs = new Label[ChrMax];
+
+        const int PlayerIndex = 0;
+        const int EnemyIndex = PlayerMax;
+        const int ItemIndex = EnemyMaex+EnemyIndex;
+
+
+        const string PlayerText = "(・_・)";
+        const string EnemyText = "ж";
+        const string ItemText = "∇";
+
+        static Random rand = new Random();
+
+
         enum State
         {
             None = -1,  //無効
@@ -31,6 +51,28 @@ namespace YoketoruVS21
         public Form1()
         {
             InitializeComponent();
+
+
+            for (int i = 0; i < ChrMax; i++)
+            {
+                chrs[i] = new Label();
+                chrs[i].AutoSize = true;
+                if (i == PlayerIndex)
+                {
+                    chrs[i].Text = PlayerText;
+                }
+                else if (i < ItemIndex)
+                {
+                    chrs[i].Text = EnemyText;
+                }
+                else
+                {
+                    chrs[i].Text = ItemText;
+                }
+                chrs[i].Font = tempLabel.Font;
+                Controls.Add(chrs[i]);
+            }
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -51,6 +93,10 @@ namespace YoketoruVS21
                 {
                     initProc();
                 }
+            }
+            if (currentState == State.Game)
+            {
+                UpdateGame();
             }
 
         }
@@ -77,21 +123,42 @@ namespace YoketoruVS21
                     startButton.Visible = false;
                     copyrightLabel.Visible = false;
                     hiLabel.Visible = false;
+
+                    for(int i = EnemyIndex; i < ChrMax; i++)
+                    {
+                        chrs[i].Left = rand.Next(ClientSize.Width - chrs[i].Width);
+                        chrs[i].Top = rand.Next(ClientSize.Height - chrs[i].Height);
+                    }
                     break;
 
                 case State.Clear:
                     //MessageBox.Show("GameOver");
                     clearLabel.Visible = true;
                     TitleButton.Visible = true;
+                    startButton.Visible = true;
                     break;
 
                 case State.GameOver:
                     //MessageBox.Show("Clear");
                     gameoverLabel.Visible = true;
                     TitleButton.Visible = true;
+                    startButton.Visible = true;
                     break;
             }
         }
+
+        void UpdateGame()
+        {
+
+            Point mp = PointToClient(MousePosition);
+
+            // TODO: mpがプレイヤーの中心になるように設定
+            Point spos = MousePosition;
+            Point fpos = PointToClient(spos);
+            chrs[0].Left = spos.X;
+            chrs[0].Top = spos.Y;
+        }
+
 
         private void startButton_Click(object sender, EventArgs e)
         {

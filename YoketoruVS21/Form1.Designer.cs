@@ -40,6 +40,7 @@ namespace YoketoruVS21
             this.clearLabel = new System.Windows.Forms.Label();
             this.TitleButton = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tempLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // startButton
@@ -144,12 +145,24 @@ namespace YoketoruVS21
             this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // tempLabel
+            // 
+            this.tempLabel.AutoSize = true;
+            this.tempLabel.Font = new System.Drawing.Font("Yu Gothic UI", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tempLabel.Location = new System.Drawing.Point(96, 267);
+            this.tempLabel.Name = "tempLabel";
+            this.tempLabel.Size = new System.Drawing.Size(56, 48);
+            this.tempLabel.TabIndex = 9;
+            this.tempLabel.Text = "★";
+            this.tempLabel.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.tempLabel);
             this.Controls.Add(this.TitleButton);
             this.Controls.Add(this.clearLabel);
             this.Controls.Add(this.gameoverLabel);
@@ -179,6 +192,7 @@ namespace YoketoruVS21
         private System.Windows.Forms.Button Title;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button TitleButton;
+        private System.Windows.Forms.Label tempLabel;
     }
 }
 
