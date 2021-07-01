@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace YoketoruVS21
 {
     public partial class Form1 : Form
     {
+        const bool isDebug = true;
         enum State
         {
             None = -1,  //無効
@@ -22,6 +24,10 @@ namespace YoketoruVS21
         }
         State currentState = State.None;
         State nextState = State.Title;
+
+        [DllImport("user32.dll")]
+        public static extern short GetAsyncKeyState(int vKey);
+
         public Form1()
         {
             InitializeComponent();
@@ -29,9 +35,22 @@ namespace YoketoruVS21
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(nextState != State.None)
+            if (isDebug)
             {
-                initProc();
+                if(GetAsyncKeyState((int)Keys.O) < 0)
+                {
+                    nextState = State.GameOver;
+                }
+                else if (GetAsyncKeyState((int)Keys.C) < 0)
+                {
+                    nextState = State.Clear;
+                }
+
+
+                if (nextState != State.None)
+                {
+                    initProc();
+                }
             }
 
         }
@@ -58,6 +77,18 @@ namespace YoketoruVS21
                     startButton.Visible = false;
                     copyrightLabel.Visible = false;
                     hiLabel.Visible = false;
+                    break;
+
+                case State.Clear:
+                    //MessageBox.Show("GameOver");
+                    clearLabel.Visible = true;
+                    TitleButton.Visible = true;
+                    break;
+
+                case State.GameOver:
+                    //MessageBox.Show("Clear");
+                    gameoverLabel.Visible = true;
+                    TitleButton.Visible = true;
                     break;
             }
         }
