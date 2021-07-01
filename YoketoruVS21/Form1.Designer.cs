@@ -130,12 +130,13 @@ namespace YoketoruVS21
             // 
             this.TitleButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.TitleButton.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TitleButton.Location = new System.Drawing.Point(348, 295);
+            this.TitleButton.Location = new System.Drawing.Point(303, 267);
             this.TitleButton.Name = "TitleButton";
             this.TitleButton.Size = new System.Drawing.Size(202, 109);
             this.TitleButton.TabIndex = 8;
             this.TitleButton.Text = "タイトルへ";
             this.TitleButton.UseVisualStyleBackColor = false;
+            this.TitleButton.Click += new System.EventHandler(this.TitleButton_Click);
             // 
             // timer1
             // 
