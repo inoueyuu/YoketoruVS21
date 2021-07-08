@@ -34,7 +34,7 @@ namespace YoketoruVS21
             this.titleLabel = new System.Windows.Forms.Label();
             this.copyrightLabel = new System.Windows.Forms.Label();
             this.TimeLabel = new System.Windows.Forms.Label();
-            this.starLabel = new System.Windows.Forms.Label();
+            this.itemLabel = new System.Windows.Forms.Label();
             this.hiLabel = new System.Windows.Forms.Label();
             this.gameoverLabel = new System.Windows.Forms.Label();
             this.clearLabel = new System.Windows.Forms.Label();
@@ -85,15 +85,15 @@ namespace YoketoruVS21
             this.TimeLabel.TabIndex = 3;
             this.TimeLabel.Text = "Time 100";
             // 
-            // starLabel
+            // itemLabel
             // 
-            this.starLabel.AutoSize = true;
-            this.starLabel.Font = new System.Drawing.Font("Yu Gothic UI", 13.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.starLabel.Location = new System.Drawing.Point(734, 9);
-            this.starLabel.Name = "starLabel";
-            this.starLabel.Size = new System.Drawing.Size(54, 25);
-            this.starLabel.TabIndex = 4;
-            this.starLabel.Text = "★:10";
+            this.itemLabel.AutoSize = true;
+            this.itemLabel.Font = new System.Drawing.Font("Yu Gothic UI", 13.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.itemLabel.Location = new System.Drawing.Point(734, 9);
+            this.itemLabel.Name = "itemLabel";
+            this.itemLabel.Size = new System.Drawing.Size(54, 25);
+            this.itemLabel.TabIndex = 4;
+            this.itemLabel.Text = "∇:10";
             // 
             // hiLabel
             // 
@@ -142,7 +142,6 @@ namespace YoketoruVS21
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // tempLabel
@@ -167,7 +166,7 @@ namespace YoketoruVS21
             this.Controls.Add(this.clearLabel);
             this.Controls.Add(this.gameoverLabel);
             this.Controls.Add(this.hiLabel);
-            this.Controls.Add(this.starLabel);
+            this.Controls.Add(this.itemLabel);
             this.Controls.Add(this.TimeLabel);
             this.Controls.Add(this.copyrightLabel);
             this.Controls.Add(this.titleLabel);
@@ -185,7 +184,7 @@ namespace YoketoruVS21
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label copyrightLabel;
         private System.Windows.Forms.Label TimeLabel;
-        private System.Windows.Forms.Label starLabel;
+        private System.Windows.Forms.Label itemLabel;
         private System.Windows.Forms.Label hiLabel;
         private System.Windows.Forms.Label gameoverLabel;
         private System.Windows.Forms.Label clearLabel;
