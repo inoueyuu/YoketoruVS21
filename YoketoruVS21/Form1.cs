@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace YoketoruVS21
 {
     public partial class Form1 : Form
     {
-        const bool isDebug = false;
+        const bool isDebug = true;
 
         const int SpeedMax = 20;
         const int starttime = 300;
@@ -61,6 +62,16 @@ namespace YoketoruVS21
         {
             InitializeComponent();
 
+            if(File.Exists("hisc.txt"))
+            {
+                string hi = File.ReadAllText("hisc.txt");
+                string trimhi = hi.Trim();//空白や改行を消す
+                int fhi;
+                if(int.TryParse(trimhi, out fhi))
+                {
+                    hiscore = fhi;
+                }
+            }
 
             for (int i = 0; i < ChrMax; i++)
             {
@@ -121,6 +132,8 @@ namespace YoketoruVS21
             switch (currentState)
             {
                 case State.Title:
+                    for (int i = 0; i > ChrMax;i++)
+                        chrs[0].Visible = false;
                     titleLabel.Visible = true;
                     itemLabel.Visible = true;
                     copyrightLabel.Visible = true;
@@ -142,7 +155,6 @@ namespace YoketoruVS21
                             state = 1;
                         }
                     }
-
                     titleLabel.Visible = false;
                     startButton.Visible = false;
                     copyrightLabel.Visible = false;
@@ -165,7 +177,9 @@ namespace YoketoruVS21
                     if(time > hiscore)
                     {
                         hiscore = time;
-                        hiLabel.Text = "Highscore" +hiscore;
+                        hiLabel.Text = $"HighScore {hiscore}";
+
+                        File.WriteAllText("hisc.txt", $"{hiscore}\n");
                     }
                     state = 0;
                     break;
